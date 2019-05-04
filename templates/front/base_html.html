@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename="common/css/base.css") }}">
+    <script src="{{ url_for('static',filename='common/zlajax.js') }}"></script>
+    <script src="{{ url_for('static',filename='common/zlparam.js') }}"></script>
+{#    <script src="{{ url_for('static',filename='common/js/base.js') }}"></script>#}
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar">a</span>
+            <span class="icon-bar">s</span>
+            <span class="icon-bar">d</span>
+          </button>
+          <a class="navbar-brand" href="/">莫言于方</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">python <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">爬虫</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">数据分析&numpy&pandas</a></li>
+                  <li role="separator" class="divider"></li>
+{#                <li><a href="#">爬虫</a></li>#}
+{#                  <li role="separator" class="divider"></li>#}
+                <li><a href="#">flask</a></li>
+                  <li role="separator" class="divider"></li>
+                <li><a href="#">诗词&孤独</a></li>
+              </ul>
+            </li>
+              <li><a href="{{ url_for("cms.index") }}">发布帖子(仅限管理员)</a></li>
+          </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                  <input type="text" name="search_text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" id="search_btn" class="btn btn-default">搜索文字</button>
+            </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">赞助我</a></li>
+            <li><a href="{{ url_for("cms.signin") }}">管理员登录</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="main-container">
+        {% block body %}{% endblock %}
+    </div>
+{#    <div class="main-footer">#}
+{#    {% include 'front/down.html' %}#}
+{#    </div>#}
+{##}
+    <div class="footer">
+        <span>莫言于方的底层信息</span>
+    </div>
+</body>
+</html>

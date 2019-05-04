@@ -1,0 +1,91 @@
+{% extends "front/base_html.html" %}
+{% block title %}
+    莫言于方
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename="common/css/index.css") }}">
+{% endblock %}
+
+{% block body %}
+    <div class="left-container">
+        <div class="context">
+            <img src="{{ url_for("static",filename='images/logo.png') }}" alt="">
+        </div>
+        <div class="context-two">
+            <ul class="group-head">
+                {% if current_id == 1 %}
+                    <li class="active"><a href="{{ url_for("front.index",db=1) }}">python文章</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("front.index",db=1) }}">python文章</a></li>
+                {% endif %}
+                {% if current_id == 2 %}
+                    <li class="active"><a href="{{ url_for("front.index",db=2) }}">数据分析</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("front.index",db=2) }}">数据分析</a></li>
+                {% endif %}
+                {% if current_id == 5 %}
+                    <li class="active"><a href="{{ url_for("front.index",db=5) }}">flask文章</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("front.index",db=5) }}">flask文章</a></li>
+                {% endif %}
+                {% if current_id == 3 %}
+                    <li class="active"><a href="{{ url_for("front.index",db=3) }}">诗词&孤独</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("front.index",db=3) }}">诗词&孤独</a></li>
+                {% endif %}
+                {% if current_id == 6 %}
+                    <li class="active"><a href="{{ url_for("front.index",db=6) }}">爬虫文章</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("front.index",db=6) }}">爬虫文章</a></li>
+                {% endif %}
+                {% if current_id == 7 %}
+                    <li class="active"><a href="{{ url_for("front.index",db=7) }}">cocos2d文章</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("front.index",db=7) }}">cocos2d文章</a></li>
+                {% endif %}
+
+            </ul>
+            <ul class="post-list-group">
+                {% for post in posts %}
+                    <li>
+                        <div class="author-avatar-group">
+{#                            <img src="{{ post.author.avatar or url_for('static',filename='common/images/logo.png') }}" alt="">#}
+                        </div>
+                        <div class="post-info-group">
+                            <p class="post-title">
+                                <a href="{{ url_for("front.pdetail",post_id = post.id) }}">{{ post.title }}</a>
+                            </p>
+                            <p class="post-info">
+                                <span>作者:yuy</span>
+                                <span>发表时间:{{ post.create_time }}</span>
+                                <span>评论:0</span>
+                                <span>阅读:0</span>
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="text-align: center">
+            {{ pagination.links }}
+        </div>
+    </div>
+    <div class="right-container">
+        <div style="padding-bottom:10px;">
+            <span class="btn btn-warning btn-block">醒目一刻</span>
+        </div>
+        <div class="con">
+            <p>题目：{{ poem_title }}</p>
+            {% for foo in poem_text %}
+                <p>{{ foo }}</p>
+            {% endfor %}
+            <p>作者：{{ poem_author }}</p>
+        </div>
+        <div style="padding-top:20px;">
+                <span class="btn btn-block"><a href="{{ url_for('front.index',db=current_id) }}">换一个</a></span>
+        </div>
+
+    </div>
+
+{% endblock %}
