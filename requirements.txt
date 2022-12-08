@@ -4,7 +4,7 @@ aniso8601==5.1.0
 billiard==3.5.0.5
 blinker==1.4
 celery==4.2.2
-certifi==2019.3.9
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 crc16==0.1.1
